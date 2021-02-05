@@ -260,6 +260,138 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/26/shellSort希尔排序的间隔生成以及调优/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wangyang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="wangyangexpo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/11/26/shellSort希尔排序的间隔生成以及调优/" itemprop="url">shellSort希尔排序的间隔生成以及调优</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-26T11:29:55+08:00">
+                2018-11-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/2018/11/26/shellSort希尔排序的间隔生成以及调优/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://yoursite.com/2018/11/26/shellSort希尔排序的间隔生成以及调优/" class="cy_cmt_count" data-xid="2018/11/26/shellSort希尔排序的间隔生成以及调优/" itemprop="commentsCount"></span>
+                </a>
+              
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </span></div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="希尔排序的间隔选择"><a href="#希尔排序的间隔选择" class="headerlink" title="希尔排序的间隔选择"></a>希尔排序的间隔选择</h3><p>希尔排序在排序数量较少的情况下，默认采用【5,3,1】这三个间隔，就可以达到很好的效果。</p>
+<p>如果排序数值量在1000以上，建议使用动态生成的 间隔序列效果比较好，实际测试1万+随机数据，使用【5，3，1】的间隔耗时1100毫秒，<br>使用动态生成的间隔序列，时间在15毫秒以内。效果明显</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line">function Sort(num) &#123;</span><br><span class="line">  this.totalNum = num</span><br><span class="line">  this.gaps = [5,3,1]</span><br><span class="line">  this.dataStore = []</span><br><span class="line">  this.genData = function setData() &#123;</span><br><span class="line">    for (let i = 0; i &lt; this.totalNum; ++i) &#123;</span><br><span class="line">      this.dataStore[i] = Math.floor(Math.random() * (this.totalNum + 1))</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  this.genGaps = function genGaps() &#123;</span><br><span class="line">    let h = 1</span><br><span class="line">    let gaps = []</span><br><span class="line">    while (h &lt; this.totalNum / 3) &#123;</span><br><span class="line">      gaps.unshift(h)</span><br><span class="line">      h = 3 * h + 1</span><br><span class="line">    &#125;</span><br><span class="line">    this.totalNum &gt; 100 &amp;&amp; (this.gaps = gaps)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  this.bubbleSort = function bubbleSort() &#123;</span><br><span class="line">    let temp</span><br><span class="line">    let data = [...this.dataStore]</span><br><span class="line">    for (let outer = this.totalNum; outer &gt;= 2; --outer) &#123;</span><br><span class="line">      for (let inner = 0; inner &lt;= outer - 1; ++inner) &#123;</span><br><span class="line">        if (data[inner] &gt; data[inner + 1]) &#123;</span><br><span class="line">          temp = data[inner]</span><br><span class="line">          data[inner] = data[inner + 1]</span><br><span class="line">          data[inner + 1] = temp</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  this.shellSort = function shellsort() &#123;</span><br><span class="line">    let data = [...this.dataStore]</span><br><span class="line">    for (let g = 0; g &lt; this.gaps.length; ++g) &#123;</span><br><span class="line">      for (let i = this.gaps[g], len = data.length; i &lt; len; ++i) &#123;</span><br><span class="line">        let temp = data[i]</span><br><span class="line">        let j = i</span><br><span class="line">        for (; j &gt;= this.gaps[g] &amp;&amp; data[j-this.gaps[g]] &gt; temp; j -= this.gaps[g]) &#123;</span><br><span class="line">           data[j] = data[j - this.gaps[g]]</span><br><span class="line">        &#125;</span><br><span class="line">        data[j] = temp</span><br><span class="line">      &#125;</span><br><span class="line">    &#125; </span><br><span class="line">  &#125;</span><br><span class="line">  this.genData()</span><br><span class="line">  this.genGaps()</span><br><span class="line"></span><br><span class="line">  // let start = Date.now()</span><br><span class="line">  // this.bubbleSort()</span><br><span class="line">  // let end = Date.now()</span><br><span class="line">  // console.log(&apos;bubbleSort耗时： &apos; + (end - start) + &apos;毫秒&apos;)</span><br><span class="line"></span><br><span class="line">  start = Date.now()</span><br><span class="line">  this.shellSort()</span><br><span class="line">  end = Date.now()</span><br><span class="line">  console.log(&apos;shellSort耗时： &apos; + (end - start) + &apos;毫秒&apos;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/14/今日事今日毕/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -792,141 +924,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/10/node-md5加密/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="wangyang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="wangyangexpo">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/10/10/node-md5加密/" itemprop="url">node md5加密</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-10T16:27:08+08:00">
-                2017-10-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-comment-o"></i>
-              </span>
-              
-                <a href="/2017/10/10/node-md5加密/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::http://yoursite.com/2017/10/10/node-md5加密/" class="cy_cmt_count" data-xid="2017/10/10/node-md5加密/" itemprop="commentsCount"></span>
-                </a>
-              
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </span></div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>node 模块中需要用到md5，sha1加密。<br>大概步骤：<br>1.data = {}<br>2.jsonstr = JSON.stringify(data);<br>3.md5 = crypto.createHash(‘md5’).update(jsonstr, ‘utf8’).digest(‘hex’);<br>4.md5Key = (md5 + secret_key).toLowerCase();<br>5.sign = crypto.createHash(‘sha1’).update(md5Key, ‘utf8’).digest(‘hex’);</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/10/10/node-md5加密/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -975,7 +972,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">28</span>
+                <span class="site-state-item-count">29</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

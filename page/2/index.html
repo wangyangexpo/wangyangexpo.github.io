@@ -260,6 +260,136 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/17/快速排序的实现/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wangyang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="wangyangexpo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/12/17/快速排序的实现/" itemprop="url">快速排序的实现</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-17T10:21:00+08:00">
+                2018-12-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/2018/12/17/快速排序的实现/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://yoursite.com/2018/12/17/快速排序的实现/" class="cy_cmt_count" data-xid="2018/12/17/快速排序的实现/" itemprop="commentsCount"></span>
+                </a>
+              
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </span></div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="快速排序的一般javascript实现"><a href="#快速排序的一般javascript实现" class="headerlink" title="快速排序的一般javascript实现"></a>快速排序的一般javascript实现</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Sort</span>(<span class="params">num</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.totalNum = num</span><br><span class="line">  <span class="keyword">this</span>.dataStore = []</span><br><span class="line">  <span class="keyword">this</span>.genData = <span class="function"><span class="keyword">function</span> <span class="title">setData</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="keyword">this</span>.totalNum; ++i) &#123;</span><br><span class="line">      <span class="keyword">this</span>.dataStore[i] = <span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.random() * (<span class="keyword">this</span>.totalNum + <span class="number">1</span>))</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">this</span>.quickSort = <span class="function"><span class="keyword">function</span> <span class="title">quickSort</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> len = data.length</span><br><span class="line">    <span class="keyword">if</span> (len &lt;= <span class="number">1</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> [...data]</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> left = []</span><br><span class="line">    <span class="keyword">let</span> right = []</span><br><span class="line">    <span class="keyword">let</span> pivot = data[<span class="number">0</span>]</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">1</span>; i &lt; len; i++) &#123;</span><br><span class="line">      <span class="keyword">let</span> item = data[i]</span><br><span class="line">      <span class="keyword">if</span> (item &lt; pivot) &#123;</span><br><span class="line">        left.push(item)</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        right.push(item)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.quickSort(left).concat(pivot, <span class="keyword">this</span>.quickSort(right))</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">this</span>.quickSort2 = <span class="function"><span class="keyword">function</span> <span class="title">quickSort2</span> (<span class="params">data</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> len = data.length</span><br><span class="line">    <span class="keyword">if</span> (len &lt;= <span class="number">1</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> [...data]</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> left = []</span><br><span class="line">    <span class="keyword">let</span> middle = []</span><br><span class="line">    <span class="keyword">let</span> right = []</span><br><span class="line">    <span class="keyword">let</span> pivotLeft = data[<span class="number">0</span>]</span><br><span class="line">    <span class="keyword">let</span> pivotRight = data[len - <span class="number">1</span>]</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">1</span>; i &lt; len; i++) &#123;</span><br><span class="line">      <span class="keyword">let</span> item = data[i]</span><br><span class="line">      <span class="keyword">if</span> (item &lt; pivotLeft) &#123;</span><br><span class="line">        left.push(item)</span><br><span class="line">      &#125; <span class="keyword">else</span> <span class="keyword">if</span> (item &gt; pivotRight) &#123;</span><br><span class="line">        right.push(item)</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        middle.push(item)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.quickSort2(left).concat(pivotLeft, <span class="keyword">this</span>.quickSort2(middle)).concat(pivotRight, <span class="keyword">this</span>.quickSort2(right))</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">this</span>.quickSort3 = <span class="function"><span class="keyword">function</span> <span class="title">quickSort3</span> (<span class="params">start, end</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (start &gt;= end) &#123;</span><br><span class="line">      <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> data = <span class="keyword">this</span>.dataStore</span><br><span class="line">    <span class="keyword">let</span> i = start</span><br><span class="line">    <span class="keyword">let</span> j = end</span><br><span class="line">    <span class="keyword">let</span> pivot = data[i]</span><br><span class="line">    <span class="keyword">while</span>(i &lt; j) &#123;</span><br><span class="line">      <span class="keyword">while</span>(i &lt; j &amp;&amp; data[j] &gt;= pivot) &#123;</span><br><span class="line">        j--;</span><br><span class="line">      &#125;</span><br><span class="line">      data[i] = data[j]</span><br><span class="line">      <span class="keyword">while</span>(i &lt; j &amp;&amp; data[i] &lt;= pivot) &#123;</span><br><span class="line">        i++;</span><br><span class="line">      &#125;</span><br><span class="line">      data[j] = data[i]</span><br><span class="line">    &#125;</span><br><span class="line">    data[i] = pivot</span><br><span class="line">    <span class="keyword">this</span>.quickSort3(start, i - <span class="number">1</span>)</span><br><span class="line">    <span class="keyword">this</span>.quickSort3(j + <span class="number">1</span>, end)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">this</span>.quickSort4 = <span class="function"><span class="keyword">function</span> <span class="title">quickSort4</span> (<span class="params">start, end</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (start &gt;= end) &#123;</span><br><span class="line">      <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> data = <span class="keyword">this</span>.dataStore</span><br><span class="line">    <span class="keyword">let</span> i = start</span><br><span class="line">    <span class="keyword">let</span> j = end</span><br><span class="line">    <span class="keyword">let</span> mid = <span class="built_in">Math</span>.floor((end - start) / <span class="number">2</span>)</span><br><span class="line">    <span class="keyword">let</span> pivot = data[mid]</span><br><span class="line">    data[mid] = data[i]</span><br><span class="line">    data[i] = pivot</span><br><span class="line">    <span class="keyword">while</span>(i &lt; j) &#123;</span><br><span class="line">      <span class="keyword">while</span>(i &lt; j &amp;&amp; data[j] &gt;= pivot) &#123;</span><br><span class="line">        j--;</span><br><span class="line">      &#125;</span><br><span class="line">      data[i] = data[j]</span><br><span class="line">      <span class="keyword">while</span>(i &lt; j &amp;&amp; data[i] &lt;= pivot) &#123;</span><br><span class="line">        i++;</span><br><span class="line">      &#125;</span><br><span class="line">      data[j] = data[i]</span><br><span class="line">    &#125;</span><br><span class="line">    data[i] = pivot</span><br><span class="line">    <span class="keyword">this</span>.quickSort4(start, i - <span class="number">1</span>)</span><br><span class="line">    <span class="keyword">this</span>.quickSort4(j + <span class="number">1</span>, end)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">this</span>.genData()</span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> start = <span class="built_in">Date</span>.now()</span><br><span class="line">  <span class="keyword">this</span>.quickSort4(<span class="number">0</span>, <span class="keyword">this</span>.totalNum - <span class="number">1</span>)</span><br><span class="line">  <span class="keyword">let</span> end = <span class="built_in">Date</span>.now()</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'quickSort4耗时： '</span> + (end - start) + <span class="string">'毫秒'</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/12/npm-run-dev又双叒叕报错了/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -791,138 +921,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/26/shellSort希尔排序的间隔生成以及调优/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="wangyang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="wangyangexpo">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/11/26/shellSort希尔排序的间隔生成以及调优/" itemprop="url">shellSort希尔排序的间隔生成以及调优</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-26T11:29:55+08:00">
-                2018-11-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-comment-o"></i>
-              </span>
-              
-                <a href="/2018/11/26/shellSort希尔排序的间隔生成以及调优/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::http://yoursite.com/2018/11/26/shellSort希尔排序的间隔生成以及调优/" class="cy_cmt_count" data-xid="2018/11/26/shellSort希尔排序的间隔生成以及调优/" itemprop="commentsCount"></span>
-                </a>
-              
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </span></div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="希尔排序的间隔选择"><a href="#希尔排序的间隔选择" class="headerlink" title="希尔排序的间隔选择"></a>希尔排序的间隔选择</h3><p>希尔排序在排序数量较少的情况下，默认采用【5,3,1】这三个间隔，就可以达到很好的效果。</p>
-<p>如果排序数值量在1000以上，建议使用动态生成的 间隔序列效果比较好，实际测试1万+随机数据，使用【5，3，1】的间隔耗时1100毫秒，<br>使用动态生成的间隔序列，时间在15毫秒以内。效果明显</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line">function Sort(num) &#123;</span><br><span class="line">  this.totalNum = num</span><br><span class="line">  this.gaps = [5,3,1]</span><br><span class="line">  this.dataStore = []</span><br><span class="line">  this.genData = function setData() &#123;</span><br><span class="line">    for (let i = 0; i &lt; this.totalNum; ++i) &#123;</span><br><span class="line">      this.dataStore[i] = Math.floor(Math.random() * (this.totalNum + 1))</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  this.genGaps = function genGaps() &#123;</span><br><span class="line">    let h = 1</span><br><span class="line">    let gaps = []</span><br><span class="line">    while (h &lt; this.totalNum / 3) &#123;</span><br><span class="line">      gaps.unshift(h)</span><br><span class="line">      h = 3 * h + 1</span><br><span class="line">    &#125;</span><br><span class="line">    this.totalNum &gt; 100 &amp;&amp; (this.gaps = gaps)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  this.bubbleSort = function bubbleSort() &#123;</span><br><span class="line">    let temp</span><br><span class="line">    let data = [...this.dataStore]</span><br><span class="line">    for (let outer = this.totalNum; outer &gt;= 2; --outer) &#123;</span><br><span class="line">      for (let inner = 0; inner &lt;= outer - 1; ++inner) &#123;</span><br><span class="line">        if (data[inner] &gt; data[inner + 1]) &#123;</span><br><span class="line">          temp = data[inner]</span><br><span class="line">          data[inner] = data[inner + 1]</span><br><span class="line">          data[inner + 1] = temp</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  this.shellSort = function shellsort() &#123;</span><br><span class="line">    let data = [...this.dataStore]</span><br><span class="line">    for (let g = 0; g &lt; this.gaps.length; ++g) &#123;</span><br><span class="line">      for (let i = this.gaps[g], len = data.length; i &lt; len; ++i) &#123;</span><br><span class="line">        let temp = data[i]</span><br><span class="line">        let j = i</span><br><span class="line">        for (; j &gt;= this.gaps[g] &amp;&amp; data[j-this.gaps[g]] &gt; temp; j -= this.gaps[g]) &#123;</span><br><span class="line">           data[j] = data[j - this.gaps[g]]</span><br><span class="line">        &#125;</span><br><span class="line">        data[j] = temp</span><br><span class="line">      &#125;</span><br><span class="line">    &#125; </span><br><span class="line">  &#125;</span><br><span class="line">  this.genData()</span><br><span class="line">  this.genGaps()</span><br><span class="line"></span><br><span class="line">  // let start = Date.now()</span><br><span class="line">  // this.bubbleSort()</span><br><span class="line">  // let end = Date.now()</span><br><span class="line">  // console.log(&apos;bubbleSort耗时： &apos; + (end - start) + &apos;毫秒&apos;)</span><br><span class="line"></span><br><span class="line">  start = Date.now()</span><br><span class="line">  this.shellSort()</span><br><span class="line">  end = Date.now()</span><br><span class="line">  console.log(&apos;shellSort耗时： &apos; + (end - start) + &apos;毫秒&apos;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -971,7 +969,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">28</span>
+                <span class="site-state-item-count">29</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
