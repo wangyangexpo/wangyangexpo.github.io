@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="1.设置css样式的三种方式？        外部样式表，引入一个外部css文件        内部样式表，将css代码放在标签内部        内联样式，将css样式直接定义在html元素内部 2.css有哪些选择器？        id选择器        类选择器        标签选择器">
+<meta property="og:type" content="article">
+<meta property="og:title" content="css知识总结">
+<meta property="og:url" content="http://yoursite.com/2017/08/02/css知识总结/index.html">
+<meta property="og:site_name" content="wangyangexpo">
+<meta property="og:description" content="1.设置css样式的三种方式？        外部样式表，引入一个外部css文件        内部样式表，将css代码放在标签内部        内联样式，将css样式直接定义在html元素内部 2.css有哪些选择器？        id选择器        类选择器        标签选择器">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2024-02-01T04:04:51.689Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="css知识总结">
+<meta name="twitter:description" content="1.设置css样式的三种方式？        外部样式表，引入一个外部css文件        内部样式表，将css代码放在标签内部        内联样式，将css样式直接定义在html元素内部 2.css有哪些选择器？        id选择器        类选择器        标签选择器">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/08/02/css知识总结/"/>
+
+
+
+
+
+  <title>css知识总结 | wangyangexpo</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">wangyangexpo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">个人小站</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/02/css知识总结/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wangyang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="wangyangexpo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">css知识总结</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-02T15:51:30+08:00">
+                2017-08-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/2017/08/02/css知识总结/#SOHUCS" itemprop="discussionUrl">
+                  <span id="changyan_count_unit" class="post-comments-count hc-comment-count" data-xid="2017/08/02/css知识总结/" itemprop="commentsCount"></span>
+                </a>
+              
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>1.设置css样式的三种方式？<br>        外部样式表，引入一个外部css文件<br>        内部样式表，将css代码放在<head><meta name="generator" content="Hexo 3.9.0">标签内部<br>        内联样式，将css样式直接定义在html元素内部</head></p>
+<p>2.css有哪些选择器？<br>        id选择器<br>        类选择器<br>        标签选择器<br><a id="more"></a><br>        又可以细分为：<br>        派生选择器（包括后代选择器、子元素选择器、相邻兄弟选择器）<br>        伪元素选择器<br>        属性选择器<br>        群组选择器<br>        通配符选择器</p>
+<pre><code>css优先级定义？
+        一般而言，选择器越特殊指向越准确，优先级越高；
+        计算方法：
+        标签选择器优先级为1
+        类选择器优先级为10
+        id选择器优先级为100
+        行内样式优先级为1000
+        ！important 无限大；
+
+（附：css选择器执行效率与兼容性详列：http://www.cnblogs.com/xiaowuzi/p/3726835.html）
+</code></pre><p>3.css中属性定义，使得dom元素不显示在浏览器可视范围内？<br>        1.display属性为none、visibility设为hidden（但是仍然占据页面空间）<br>        2.设置宽高为0/透明度0/z-index位置-1000(附：该属性仅在定位元素中生效)；</p>
+<pre><code>（附：display：none和visibility：hidden的区别）
+display：隐藏对应的元素不占据原来的空间。visibility：隐藏对应的元素仍占据空间位置。
+</code></pre><p>4.超链接访问过后hover样式就不出现？如何解决？<br>        改变css属性的排列顺序（LVHA）link visited hover active</p>
+<p>5.css hack的原理？<br>        由于不同的浏览器和浏览器各版本对css的支持及解析结果不一样，以及css优先级对浏览器展现效果的影响，我们可以据此针对不同浏览器情景来应用不同的css。</p>
+<pre><code>css hack的分类？
+        css hack有三种表现形式，css属性前缀法、选择器前缀法以及ie条件注释法（即头部引用if ie）。实际项目中css hack大部分是针对ie浏览器不同版本之间的表现差异而引入的。
+
+        5.1属性前缀法：
+                例：ie6能识别下划线“_”和星号“*”，ie7能识别星号“*”（以上版本并不支持），但不能识别下划线“_”，ie6~ie10都认识“\9”，但是其他浏览器不能支持（也就是说可以利用这个特性恶心一下还在使用老版本的用户，哈哈）（“\9”测试网址http://www.jb51.net/css/24944.html）
+        5.2选择器前缀法（选择器hack）
+                例：ie6能识别*html .class{},ie7能识别*+html .class{} 或者*:first-child+html .class{};
+        5.3ie条件注释法：
+                针对所有ie（ie10+已经不再支持条件注释）：&lt;!--[if IE]&gt;ie浏览器显示的内容&lt;![endif]--&gt;，针对ie6及以下版本：&lt;!--[if lte IE 6]&gt;只在ie6及以下显示的内容&lt;![endif]--&gt;.这类hack不仅针对css生效，对写在判断语句里面的所有代码都会生效。
+
+        css hack书写顺序：
+                一般将适用范围广，能识别能力强的css定义在前面。因为写在后面代码如果被识别会覆盖前面识别的。
+        （hack参考大全：http://blog.csdn.net/freshlover/article/details/12132801）
+</code></pre><p>6.行内元素和块级元素的具体区别？行内元素的padding和margin可设置吗？<br>        块级元素：总是独占一行，宽、高、内边距、外边距都可以控制。<br>        内联元素：和相邻的内联元素在同一行，宽、高、上下内边距、上下外边距都不可变。<br>        块级元素：<br>                div、p、h1~h6、hr、ul、ol、li、dl、dt、dd、form、table、tbody、tfoot、thead、（header、article、footer、nav、section）<br>        内联元素：<br>                span、a、b、br、em、strong、img、input、abbr、button、label、textarea<br>        （拓展：浏览器默认的inline-block元素</p>
+<pre><code>（附：行内块元素的兼容性使用？）
+        div｛
+            display:inline-blcok;  //触发ie的hasLayout
+            display:inline;
+        ｝
+        div｛
+            *display：inline；*zoom：1;
+        ｝
+</code></pre><p>7:外边距重叠是什么？导致的结果是什么？<br>        在css当中两个（普通文档流）竖直方向上的毗邻（没有被非空内容、padding、border 或 clear 分隔开）盒子的外边距可以结合成一个单独的外边距。这种合并外边距的方式被称为折叠，所结合而成的外边距成为折叠外边距。<br>        注意：父块级盒子与子块级盒子在垂直方向上毗邻也会导致外边距重叠；</p>
+<pre><code>计算规则：
+        两个竖直方向上相邻的外边距都是正数，折叠结果是他们两者之间较大的值。
+        两个竖直方向上相邻的外边距都是负数时，折叠结果是两者绝对值的较大值。
+        两个竖直方向上相邻的外边距一正一负时，折叠结果是两者的相加的和；
+
+(附：如何使元素上下margin不折叠？)
+        1、浮动、inline-block、绝对定位；
+        2、创建块级格式化上下文（BFC）的元素，不和它的子元素发生margin折叠；
+        (详细链接：https://www.zhihu.com/question/19823139)
+</code></pre><p>8.rgba()和opacity()的透明效果的区别？<br>        rgba()和opacity都能实现透明效果，但最大的不同是opacity作用于元素，以及元素内的所有内容的透明度，而rgba()只作用于元素的颜色或其背景色。<br>        （css样式继承拓展：<a href="http://www.cnblogs.com/thislbq/p/5882105.html）" target="_blank" rel="noopener">http://www.cnblogs.com/thislbq/p/5882105.html）</a></p>
+<p>9.css中文字的水平垂直居中？<br>        line-height  设置为盒子高度<br>        text-align  center;</p>
+<p>10.垂直居中一个浮动元素？<br>        已知高度：<br>        .son{<br>                background-color:#ff0000;<br>                width:200px;<br>                height:200px;<br>                position:absolute;<br>                top:50%;<br>                left:50%;<br>                margin-left:-100px;<br>                margin-top:-100px;<br>        }<br>        未知高度：<br>        .son{<br>                        width: 200px;<br>                    height: 200px;<br>                    background-color: #ff0000;<br>                    margin:auto;<br>                    position: absolute;<br>                    left: 0;<br>                    top: 0;<br>                    right: 0;<br>                    bottom: 0;<br>        }<br>        附：css3方法未知宽高<br>        .father{<br>                display:flex;<br>                justify-content:center;<br>                align-items:center;<br>        }<br>        (详解c3div水平垂直居中：<a href="http://www.cnblogs.com/shenxiaolin/p/5387623.html" target="_blank" rel="noopener">http://www.cnblogs.com/shenxiaolin/p/5387623.html</a>)</p>
+<pre><code>如何垂直居中一个&lt;img&gt;？
+第一种：
+.father{
+        display:table-cell;                
+        text-align:center;
+        vertical-align:middle;
+}
+第二种：
+.father{
+        height: 1000px;
+        width: 1000px;
+        text-align: center;
+        margin: 0 auto;
+        line-height: 1000px;
+}
+.img{
+        vertical-align: middle;
+}
+</code></pre><p>11.px和em的区别<br>        px和em都是长度单位。<br>        px的值是固定的，指定多少就是多少，容易计算。em的值不是固定的，并且em会继承父级元素的字体大小。<br>        浏览器默认字体高都是16px。在默认情况下都是：1em=16px。12px=0.75em。</p>
+<p>12.css的content属性？有什么作用与应用？<br>        css的content属性专门应用在before/after伪元素上，用来插入生成内容。<br>        常用伪类清除浮动：<br>                .clearfix:after{<br>                        content:”.”;<br>                        display:block;<br>                        height:0;<br>                        visibility:hidden;<br>                        clear:both;<br>                }<br>                .clearfix{<br>                        *zoom:1;<br>                }<br>        (附：清除浮动的方式？)<br>                1、给父元素定义height<br>                2、结尾处加空div标签clear：both；<br>                3、父级元素定义伪类：如上；<br>                4、父级元素定义overflow：hidden；<br>                5、父级元素定义overflow：auto；<br>                6、父级元素也浮动,需要定义宽度；<br>                7、父级元素定义display：table；<br>                8、结尾处加br标签clear：both；</p>
+<pre><code>第三种：after伪元素方法清理浮动，文档结构更加清晰
+</code></pre><p>13.box-sizing 常用的属性？分别有什么作用？<br>        box-sizing：content-box|border-box|inherit；<br>        content-box：宽、高应用到元素的内容框。在高、宽之外绘制元素的内边距和边框（默认效果）；<br>        border-box：元素的任何内边距和边框都在已设定的宽度和高度内进行绘制。<br>        此时的宽高=content+padding+border；</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/04/17/hello-world/" rel="next" title="Here Comes My Blog">
+                <i class="fa fa-chevron-left"></i> Here Comes My Blog
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/08/03/前端网址/" rel="prev" title="前端网址">
+                前端网址 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="SOHUCS"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="wangyang" />
+          <p class="site-author-name" itemprop="name">wangyang</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">35</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/wangyangexpo" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                    
+                      GitHub
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.weibo.com/u/1886900650" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                    
+                      Weibo
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/wang-mie-mie-59-65" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                    
+                      知乎
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="183384342@qq.com" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>
+                  
+                    
+                      E-Mail
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">wangyang</span>
+</div>
+
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+  
+    <script type="text/javascript">
+    (function(){
+      var appid = 'cyteSeFDz';
+      var conf = 'dfe25f66cf05db1106fb82e5684d2fe2';
+      var width = window.innerWidth || document.documentElement.clientWidth;
+      if (width < 960) {
+      window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){
+        window.changyan.api.config({appid:appid,conf:conf})});
+      }
+    })();
+    </script>
+    <script type="text/javascript" src="https://assets.changyan.sohu.com/upload/plugins/plugins.count.js"></script>
+  
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
